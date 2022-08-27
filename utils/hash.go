@@ -1,4 +1,4 @@
-package util
+package utils
 
 import "unsafe"
 
@@ -15,9 +15,7 @@ func rthash(b []byte, seed uint64) uint64 {
 	}
 	//32 bit
 	if unsafe.Sizeof(0) == 8 {
-
 		return uint64(runtimeMemHash(unsafe.Pointer(&b[0]), uintptr(seed), uintptr(len(b))))
-
 	}
 	// 64bit >
 	hi := uint64(runtimeMemHash(unsafe.Pointer(&b[0]), uintptr(seed), uintptr(len(b))))

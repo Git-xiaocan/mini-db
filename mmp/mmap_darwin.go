@@ -1,4 +1,4 @@
-package mmp
+package mmap
 
 import (
 	"golang.org/x/sys/unix"
@@ -14,6 +14,7 @@ func mmap(fd *os.File, writable bool, size int64) ([]byte, error) {
 	if writable {
 		t |= unix.PROT_WRITE //writable
 	}
+
 	return unix.Mmap(int(fd.Fd()), 0, int(size), t, unix.MAP_SHARED)
 }
 

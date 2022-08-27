@@ -468,7 +468,6 @@ func (skl *skipList) sklDeleteNode(p *sklNode, updates []*sklNode) {
 	}
 	for skl.level > 1 && skl.head.level[skl.level-1].forward == nil {
 		skl.level--
-
 	}
 	skl.length--
 
@@ -485,7 +484,7 @@ func (skl *skipList) sklDelete(score float64, member string) {
 		updates[i] = p
 	}
 	p = p.level[0].forward
-	if p != nil && score == p.score && p.member == p.member {
+	if p != nil && score == p.score && p.member == member {
 		skl.sklDeleteNode(p, updates)
 	}
 

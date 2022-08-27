@@ -56,7 +56,7 @@ func SyncDir(path string) error {
 	return nil
 }
 
-// Release the file lock
+// Release   the file lock
 func (fl *FileLockGuard) Release() error {
 	t := syscall.LOCK_UN | syscall.LOCK_NB
 	if err := syscall.Flock(int(fl.fd.Fd()), t); err != nil {
