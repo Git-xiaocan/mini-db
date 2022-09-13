@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"github.com/flower-corp/rosedb/logger"
 	"github.com/tidwall/redcon"
-	"io/ioutil"
 	"minidb"
 	"os"
 	"os/signal"
@@ -23,20 +22,13 @@ var (
 var (
 	defaultDBPath            = filepath.Join("/tmp", "minidb")
 	defaultHost              = "127.0.0.1"
-	defaultPort              = "5200"
+	defaultPort              = "16379"
 	defaultDatabasesNum uint = 16
 )
 
 const (
 	dbName = "minidb-%04d"
 )
-
-func init() {
-	// print banner
-	path, _ := filepath.Abs("resource/banner.txt")
-	banner, _ := ioutil.ReadFile(path)
-	fmt.Println(string(banner))
-}
 
 type Server struct {
 	dbs    map[int]*minidb.MiniDB
@@ -54,7 +46,7 @@ type ServerOptions struct {
 }
 
 func main() {
-	// init server options
+
 	serverOpts := new(ServerOptions)
 	flag.StringVar(&serverOpts.dbPath, "dbpath", defaultDBPath, "db path")
 	flag.StringVar(&serverOpts.host, "host", defaultHost, "server host")
@@ -62,7 +54,7 @@ func main() {
 	flag.UintVar(&serverOpts.databases, "databases", defaultDatabasesNum, "the number of databases")
 	flag.Parse()
 
-	// open a default database
+	// 打开默认数据库
 	path := filepath.Join(serverOpts.dbPath, fmt.Sprintf(dbName, 0))
 	opts := minidb.DefaultOptions(path)
 	now := time.Now()

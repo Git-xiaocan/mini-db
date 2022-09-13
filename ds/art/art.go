@@ -6,7 +6,7 @@ type AdaptiveRadixTree struct {
 	tree goart.Tree
 }
 
-// NewArt create an art tree
+// NewArt 创建ART树
 func NewArt() *AdaptiveRadixTree {
 	return &AdaptiveRadixTree{
 		tree: goart.New(),

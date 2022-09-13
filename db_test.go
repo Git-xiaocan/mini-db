@@ -31,7 +31,7 @@ func TestOpen(t *testing.T) {
 }
 
 func TestLogFileGC(t *testing.T) {
-	path := filepath.Join("/tmp", "rosedb")
+	path := filepath.Join("/tmp", "minidb")
 	opts := DefaultOptions(path)
 	opts.LogFileGCInterval = time.Second * 7
 	opts.LogFileGCRatio = 0.00001

@@ -2,7 +2,7 @@ package ioselector
 
 import "os"
 
-// FileIOSelector represents using standard file I/O
+// FileIOSelector 表示使用标准文件IO
 type FileIOSelector struct {
 	fd *os.File
 }

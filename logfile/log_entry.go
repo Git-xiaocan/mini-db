@@ -56,6 +56,7 @@ func EncodeEntry(e *LogEntry) ([]byte, int) {
 	index += binary.PutVarint(header[index:], int64(len(e.Value)))
 	index += binary.PutVarint(header[index:], e.ExpiredAt)
 	// header end
+
 	// key and value
 	var size = index + len(e.Key) + len(e.Value)
 	buf := make([]byte, size)

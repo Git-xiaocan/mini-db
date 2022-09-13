@@ -6,7 +6,7 @@ import (
 )
 
 const (
-	maxLevel    = 32 //the max layers of skip list
+	maxLevel    = 32 //skip list的最大层数
 	probability = 0.25
 )
 
@@ -20,7 +20,7 @@ type (
 		length int64
 		level  int16
 	}
-	// sklNode node of skip list
+	// sklNode 跳表节点
 	sklNode struct {
 		member   string
 		score    float64
@@ -32,11 +32,10 @@ type (
 		forward *sklNode
 		span    uint64
 	}
-	// SortedSet sorted set struct
+
 	SortedSet struct {
 		record map[string]*SortedSetNode
 	}
-	// SortedSetNode node of sorted set
 	SortedSetNode struct {
 		dict map[string]*sklNode
 		skl  *skipList

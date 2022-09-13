@@ -11,7 +11,6 @@ var ErrInvalidFsize = errors.New("fsize can't be zero or negative")
 //FilePerm default permission of the newly created logger file
 const FilePerm = 0644
 
-// IOSelector io selector for file io and mmap ,used by wal and value logger right now
 type IOSelector interface {
 	//Write a slice to logger file at offset
 	//It returns the number of bytes written and an error ,if any

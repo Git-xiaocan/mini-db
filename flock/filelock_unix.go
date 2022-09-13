@@ -8,13 +8,13 @@ import (
 	"syscall"
 )
 
-// FileLockGuard hold a lock of file on a directory
+// FileLockGuard 在目录上持有文件锁
 type FileLockGuard struct {
 	fd *os.File
 }
 
-// AcquireFileFlock acquire the lock on the directory by syscall.Flock.
-// return a FileLockGuard or an error, if any.
+// AcquireFileFlock 通过 syscall.Flock 获取目录上的锁
+// 返回 FileLockGuard 或错误
 func AcquireFileFlock(path string, readOnly bool) (*FileLockGuard, error) {
 	flag := os.O_RDWR // read and write
 	if readOnly {
@@ -39,7 +39,7 @@ func AcquireFileFlock(path string, readOnly bool) (*FileLockGuard, error) {
 
 }
 
-// SyncDir commits the current contents of directory to stable storage
+// SyncDir 将目录的当前内容提交到稳定存储
 func SyncDir(path string) error {
 	fd, err := os.Open(path)
 	if err != nil {
@@ -56,7 +56,7 @@ func SyncDir(path string) error {
 	return nil
 }
 
-// Release   the file lock
+// Release 释放文件锁
 func (fl *FileLockGuard) Release() error {
 	t := syscall.LOCK_UN | syscall.LOCK_NB
 	if err := syscall.Flock(int(fl.fd.Fd()), t); err != nil {
